@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/sign-up-react/static/css/main.010b06a6.chunk.css",
+    "main.js": "/sign-up-react/static/js/main.d37f6493.chunk.js",
+    "main.js.map": "/sign-up-react/static/js/main.d37f6493.chunk.js.map",
+    "runtime-main.js": "/sign-up-react/static/js/runtime-main.68205525.js",
+    "runtime-main.js.map": "/sign-up-react/static/js/runtime-main.68205525.js.map",
+    "static/css/2.4ffbcd00.chunk.css": "/sign-up-react/static/css/2.4ffbcd00.chunk.css",
+    "static/js/2.cd917e18.chunk.js": "/sign-up-react/static/js/2.cd917e18.chunk.js",
+    "static/js/2.cd917e18.chunk.js.map": "/sign-up-react/static/js/2.cd917e18.chunk.js.map",
+    "index.html": "/sign-up-react/index.html",
+    "static/css/2.4ffbcd00.chunk.css.map": "/sign-up-react/static/css/2.4ffbcd00.chunk.css.map",
+    "static/css/main.010b06a6.chunk.css.map": "/sign-up-react/static/css/main.010b06a6.chunk.css.map",
+    "static/js/2.cd917e18.chunk.js.LICENSE.txt": "/sign-up-react/static/js/2.cd917e18.chunk.js.LICENSE.txt",
+    "static/media/notifications.css": "/sign-up-react/static/media/notification.c5d9251e.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.68205525.js",
+    "static/css/2.4ffbcd00.chunk.css",
+    "static/js/2.cd917e18.chunk.js",
+    "static/css/main.010b06a6.chunk.css",
+    "static/js/main.d37f6493.chunk.js"
+  ]
+}
