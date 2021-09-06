@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/sign-up-react/static/css/main.010b06a6.chunk.css",
-    "main.js": "/sign-up-react/static/js/main.de4a7d29.chunk.js",
-    "main.js.map": "/sign-up-react/static/js/main.de4a7d29.chunk.js.map",
-    "runtime-main.js": "/sign-up-react/static/js/runtime-main.68205525.js",
-    "runtime-main.js.map": "/sign-up-react/static/js/runtime-main.68205525.js.map",
-    "static/css/2.4ffbcd00.chunk.css": "/sign-up-react/static/css/2.4ffbcd00.chunk.css",
-    "static/js/2.cd917e18.chunk.js": "/sign-up-react/static/js/2.cd917e18.chunk.js",
-    "static/js/2.cd917e18.chunk.js.map": "/sign-up-react/static/js/2.cd917e18.chunk.js.map",
-    "index.html": "/sign-up-react/index.html",
-    "static/css/2.4ffbcd00.chunk.css.map": "/sign-up-react/static/css/2.4ffbcd00.chunk.css.map",
-    "static/css/main.010b06a6.chunk.css.map": "/sign-up-react/static/css/main.010b06a6.chunk.css.map",
-    "static/js/2.cd917e18.chunk.js.LICENSE.txt": "/sign-up-react/static/js/2.cd917e18.chunk.js.LICENSE.txt",
-    "static/media/notifications.css": "/sign-up-react/static/media/notification.c5d9251e.ttf"
+    "main.css": "/auth-react/static/css/main.010b06a6.chunk.css",
+    "main.js": "/auth-react/static/js/main.de4a7d29.chunk.js",
+    "main.js.map": "/auth-react/static/js/main.de4a7d29.chunk.js.map",
+    "runtime-main.js": "/auth-react/static/js/runtime-main.694ff881.js",
+    "runtime-main.js.map": "/auth-react/static/js/runtime-main.694ff881.js.map",
+    "static/css/2.06c51dbc.chunk.css": "/auth-react/static/css/2.06c51dbc.chunk.css",
+    "static/js/2.cd917e18.chunk.js": "/auth-react/static/js/2.cd917e18.chunk.js",
+    "static/js/2.cd917e18.chunk.js.map": "/auth-react/static/js/2.cd917e18.chunk.js.map",
+    "index.html": "/auth-react/index.html",
+    "static/css/2.06c51dbc.chunk.css.map": "/auth-react/static/css/2.06c51dbc.chunk.css.map",
+    "static/css/main.010b06a6.chunk.css.map": "/auth-react/static/css/main.010b06a6.chunk.css.map",
+    "static/js/2.cd917e18.chunk.js.LICENSE.txt": "/auth-react/static/js/2.cd917e18.chunk.js.LICENSE.txt",
+    "static/media/notifications.css": "/auth-react/static/media/notification.c5d9251e.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.68205525.js",
-    "static/css/2.4ffbcd00.chunk.css",
+    "static/js/runtime-main.694ff881.js",
+    "static/css/2.06c51dbc.chunk.css",
     "static/js/2.cd917e18.chunk.js",
     "static/css/main.010b06a6.chunk.css",
     "static/js/main.de4a7d29.chunk.js"
