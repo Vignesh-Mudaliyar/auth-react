@@ -23,7 +23,7 @@ export default function App() {
     <Router>
       <Switch>
        
-      <PrivateRoute exact path="/"  component={Dashboard} /> 
+      <PrivateRoute exact path="/auth-react"  component={Dashboard} /> 
       <Route path="/auth-react/pdetails" component={PersonalDetails} /> 
       <Route path="/auth-react/login" component={Login} /> 
       <Route path="/auth-react/signup" component={SignUp} /> 
