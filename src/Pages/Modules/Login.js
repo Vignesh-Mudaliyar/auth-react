@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import {  Form, Alert } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
-import { AuthContext } from "../App";
-import ButtonComponent from "../components/ButtonComponent";
-import CenteredContainer from "../components/centeredContainer";
-import InputComponent from "../components/Input";
+import { AuthContext } from "../../App";
+import ButtonComponent from "../../components/ButtonComponent";
+import CenteredContainer from "../../components/centeredContainer";
+import InputComponent from "../../components/Input";
+import Cookies from 'js-cookie'; 
 
 export default function Login() {
   const { setAuthUser } = useContext(AuthContext);
@@ -40,6 +41,15 @@ export default function Login() {
     }
   };
 
+ const handleShowPwd =  (e) => {
+    if(showPassword === 'password'){
+      setShowPassword('text');
+    }
+    else{
+      setShowPassword('password');
+    }
+  }
+
   const handlePassword = (e) => {
     let value = e.target.value;
     setPassword(value);
@@ -47,23 +57,23 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (validate.emailClass === "is-valid" && password.length >= 1) {
-      setDisable(false);
-    } else {
-      setDisable(true);
-    }
+    (validate.emailClass === "is-valid" && password.length >= 1) ? setDisable(false) :  setDisable(true);
+    
   }, [validate, password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (email === "vignesh@info.com" && password === "vignesh012") {
+    if (email === "test@abc.com" && password === "12345678") {
       setErr(false);
       setAuthUser(true);
-      history.push("/auth-react");
+  
+      Cookies.set('login','true');
+
+      history.push("/");
     } else {
       setErr(true);
-      setDisable(true);
+      (validate.emailClass === "is-valid" && password.length >= 1) ? setDisable(false) :  setDisable(true);
     }
   };
 
@@ -93,22 +103,15 @@ export default function Login() {
             type={showPassword}
           />
 
-          <Form.Check type="checkbox" label="Show password" onChange={(e) => {
-            if(showPassword === 'password'){
-              setShowPassword('text');
-            }
-            else{
-              setShowPassword('password');
-            }
-          }} />
+          <Form.Check type="checkbox" label="Show password" onChange={handleShowPwd} />
 
           <ButtonComponent disable={disable} type="submit" label="Login" />
         </Form>
         <div className="mt-3 text-center">
-          Didn't have an account? <Link to="/auth-react/pdetails">Sign up</Link>
+          Didn't have an account? <Link to="/signup">Sign up</Link>
         </div>
         <div className="mt-3">
- HINT:- email:- <b>vignesh@info.com</b> || pwd:- <b>vignesh012</b>
+      HINT:- email:- <b>test@abc.com</b> || pwd:- <b>12345678</b>
      </div>
     </CenteredContainer>
     

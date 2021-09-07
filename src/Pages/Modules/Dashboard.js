@@ -1,33 +1,30 @@
-import React, { useContext, useEffect,useState } from "react";
-import Navvbar from "./components/Navbar";
-import { Table,Button } from "react-bootstrap";
+// import React, {  useEffect,useState } from "react";
+import Navvbar from "../../components/Navbar";
+import { Table } from "react-bootstrap";
 import Loader from "react-loader-spinner";
-import { AuthContext } from "./App";
+import useApi from '../../hooks/useApi'
+// import { AuthContext } from "../../App";
+import Cookies from 'js-cookie'
+import { useHistory } from "react-router-dom";
+import ButtonComponent from "../../components/ButtonComponent";
 
+ 
 export default function Dashboard() {
 
-    const [data,setData] =useState([]);
-    const [loading,setLoading] =useState(false);
-    const {setAuthUser} = useContext(AuthContext);
+   
+    const history = useHistory();
+    const {data,loading} = useApi("https://reqres.in/api/users"); 
 
-  useEffect(() => {
-    fetch(
-      "https://reqres.in/api/users"
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result.data);
+   const handleClick= () => {
+     Cookies.remove('login');
+    history.push('/login');
+  }
 
-        setTimeout(() => {
-            setData(result.data);
-            setLoading(true);
-        },700)
-     
-      });
-  }, []);
+
+ 
   return (
     <>
-      <Navvbar />
+      <Navvbar brand="Vibrant" Home="Home" />
       <div className="my-3 d-flex align-items-center flex-column" >
          {loading ?  <Table striped bordered hover  style={{maxWidth:'700px'}}> 
           <thead>
@@ -39,7 +36,7 @@ export default function Dashboard() {
             </tr>
           </thead> 
           <tbody>
-               {data.map((value,index) => (
+               {data.map((value) => (
                   <tr key={value.id}>
                       <td>{`0${value.id}`}</td>
                       <td>{value.first_name}</td>
@@ -56,7 +53,7 @@ export default function Dashboard() {
       
         /> </div>}
       </div>
-      <div className="text-center"><Button onClick={() => setAuthUser(false)} >Sign out</Button></div>
+     <div className="d-flex justify-content-center" > <div  style={{maxWidth: '100px'}}><ButtonComponent handleClick={handleClick} type="button" label="Sign Out"  /></div></div>
     </>
   );
 }

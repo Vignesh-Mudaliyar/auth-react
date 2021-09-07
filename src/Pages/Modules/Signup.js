@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Form } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
-import { AuthContext } from "../App";
-import ButtonComponent from "../components/ButtonComponent";
-import InputComponent from "../components/Input";
-import CenteredContainer from "../components/centeredContainer";
+import { AuthContext } from "../../App";
+import ButtonComponent from "../../components/ButtonComponent";
+import InputComponent from "../../components/Input";
+import CenteredContainer from "../../components/centeredContainer";
+import Cookies from 'js-cookie'
+
+
 
 export default function SignUp() {
   const history = useHistory();
@@ -66,7 +69,7 @@ export default function SignUp() {
     } else {
       setValidate({
         ...validate,
-        confirmPasswordText: "password not matched",
+        confirmPasswordText: "Password not matched",
         confirmPasswordClass: "is-invalid",
       });
     }
@@ -87,7 +90,9 @@ export default function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setAuthUser(true);
-    history.push("/auth-react");
+    Cookies.set("login","true",{expires : 7});
+    history.push("/");
+
   };
 
   return (
@@ -110,7 +115,7 @@ export default function SignUp() {
             value={password}
             vClass={validate.passwordClass}
             handleEvent={handlePassword}
-            pHolder="Enter Passoord"
+            pHolder="Enter Password"
             errText={validate.passwordText}
             type={showPassword}
           />
@@ -120,7 +125,7 @@ export default function SignUp() {
             value={confirmPassword}
             vClass={validate.confirmPasswordClass}
             handleEvent={handleConfirmPassword}
-            pHolder="Enter Confirm Passoord"
+            pHolder="Enter Confirm Password"
             errText={validate.confirmPasswordText}
             type={showPassword}
           />
@@ -137,7 +142,7 @@ export default function SignUp() {
           <ButtonComponent disable={disable} label="Sign up" type='submit'  />
         </Form>
         <div className="mt-3 text-center">
-          Already have an account? <Link to="/auth-react/login">Login</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </div>
         </CenteredContainer>
 

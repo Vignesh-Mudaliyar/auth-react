@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react'
 import {  Form } from 'react-bootstrap';
 import {Link, useHistory} from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import InputComponent from '../components/Input';
-import ButtonComponent from '../components/ButtonComponent';
-import CenteredContainer from '../components/centeredContainer';
+import InputComponent from '../../components/Input';
+import ButtonComponent from '../../components/ButtonComponent';
+import CenteredContainer from '../../components/centeredContainer';
+
+import Cookies from 'js-cookie'
+
+Cookies.set('foo', 'bar')
 
 export default function PersonalDetails() {
     const history = useHistory();
@@ -97,8 +101,6 @@ export default function PersonalDetails() {
           setFileText('');    
       }
       else{
-       
-
           setFileText('please upload image file. (jpg/jpeg or png)');
           setImg('');  
       }
