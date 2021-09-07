@@ -8,13 +8,13 @@ import InputComponent from "../components/Input";
 
 export default function Login() {
   const { setAuthUser } = useContext(AuthContext);
-
+  // 150818471471-jo1r14g95ls5frtno0g50uua9msu2io3.apps.googleusercontent.com
   const history = useHistory();
   const [disable, setDisable] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState(false);
-
+  const [showPassword,setShowPassword] = useState('password');
   const [validate, setValidate] = useState({
     emailClass: "",
     emailText: "",
@@ -30,7 +30,7 @@ export default function Login() {
     setEmail(value);
 
     if (value.match(/^[a-z0-9-]+@[a-z-]+\.[a-z]{2,5}$/)) {
-      setValidate({ ...validate, emailText: "", emailClass: "" });
+      setValidate({ ...validate, emailText: "", emailClass: "is-valid" });
     } else {
       setValidate({
         ...validate,
@@ -47,7 +47,7 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (validate.emailClass === "" && password.length >= 1) {
+    if (validate.emailClass === "is-valid" && password.length >= 1) {
       setDisable(false);
     } else {
       setDisable(true);
@@ -90,8 +90,17 @@ export default function Login() {
             handleEvent={handlePassword}
             pHolder="Enter Password"
             errText={validate.passwordText}
-            type="password"
+            type={showPassword}
           />
+
+          <Form.Check type="checkbox" label="Show password" onChange={(e) => {
+            if(showPassword === 'password'){
+              setShowPassword('text');
+            }
+            else{
+              setShowPassword('password');
+            }
+          }} />
 
           <ButtonComponent disable={disable} type="submit" label="Login" />
         </Form>

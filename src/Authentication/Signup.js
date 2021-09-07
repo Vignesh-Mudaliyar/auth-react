@@ -13,6 +13,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword,setShowPassword] = useState('password');
   const [validate, setValidate] = useState({
     emailClass: "",
     emailText: "",
@@ -56,7 +57,7 @@ export default function SignUp() {
     let value = e.target.value;
     setConfirmPassword(value);
 
-    if (value === password) {
+    if (value === password && value.length !==0) {
       setValidate({
         ...validate,
         confirmPasswordText: "",
@@ -111,7 +112,7 @@ export default function SignUp() {
             handleEvent={handlePassword}
             pHolder="Enter Passoord"
             errText={validate.passwordText}
-            type="password"
+            type={showPassword}
           />
 
           <InputComponent
@@ -121,15 +122,24 @@ export default function SignUp() {
             handleEvent={handleConfirmPassword}
             pHolder="Enter Confirm Passoord"
             errText={validate.confirmPasswordText}
-            type="password"
+            type={showPassword}
           />
 
-          <ButtonComponent disable={disable} label="Sign up" type='submit' />
+          <Form.Check type="checkbox" label="Show password" onChange={(e) => {
+            if(showPassword === 'password'){
+              setShowPassword('text');
+            }
+            else{
+              setShowPassword('password');
+            }
+          }} />
+
+          <ButtonComponent disable={disable} label="Sign up" type='submit'  />
         </Form>
         <div className="mt-3 text-center">
           Already have an account? <Link to="/auth-react/login">Login</Link>
         </div>
         </CenteredContainer>
-  
+
   );
 }

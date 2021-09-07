@@ -16,6 +16,8 @@ export default function PersonalDetails() {
     const [disable, setDisable] = useState(true);
     const [validate, setValidate] = useState({ fNameText: '', fNameClass: '', lNameText: '', lNameClass: '', pNumberClass: '', pNumberText: '', dobClass: '', dobText: '' })
     const [data, setData] = useState([]);
+    const [fileText,setFileText] = useState('');
+    const [img,setImg] =useState('');
 
     const handleFName = (e) => {
         setFname(e.target.value);
@@ -81,6 +83,28 @@ export default function PersonalDetails() {
        
     }
 
+    const handleImgFile = (e) => {
+      
+      const value= e.target.value;
+      setImg(e.target.value)
+        let extnsion = value.slice(value.indexOf('.') + 1,value.length);
+
+        console.log(typeof(extnsion),typeof('png'))
+
+      if(extnsion === 'png' || extnsion === 'jpg' || extnsion === 'jpeg')
+      {
+          
+          setFileText('');    
+      }
+      else{
+       
+
+          setFileText('please upload image file. (jpg/jpeg or png)');
+          setImg('');  
+      }
+
+        
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -105,13 +129,14 @@ export default function PersonalDetails() {
        console.log(data);
     }, [data]);
     useEffect(() => {
-        if (fName.length >= 5 && lName.length >= 5 && pNumber.match(/^\d{10}$/) && date.length >= 10) {
+       
+        if (fName.length >= 5 && lName.length >= 5 && pNumber.match(/^\d{10}$/) && date.length >= 10 && img !== '') {
             setDisable(false);
         }
         else {
             setDisable(true);
         }
-    }, [fName, lName, pNumber, date]) 
+    }, [fName, lName, pNumber, date,img]); 
 
     return (
       <CenteredContainer>
@@ -157,6 +182,12 @@ export default function PersonalDetails() {
                     <Form.Group className="my-3">
                         <Form.Label> Age</Form.Label>
                         <Form.Control type="text" value={age} readOnly />
+                    </Form.Group>
+
+                    <Form.Group  className="my-3 ">
+                                <Form.Label>Upload Image</Form.Label><br />
+                              <Form.Control type="file" accept=".png,.jpg,.jpeg" className="is-invalid border border-secondary rounded"  onChange={handleImgFile} onBlur={handleImgFile}/> <br />
+                              <Form.Text className="text-danger">{fileText}</Form.Text>
                     </Form.Group>
 
                     <ButtonComponent disable={disable} type="submit" label="Submit" />

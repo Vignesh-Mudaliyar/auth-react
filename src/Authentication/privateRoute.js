@@ -8,7 +8,7 @@ export default function PrivateRoute({component:Component,...rest}) {
     console.log(authUser)
     return (
         <Route {...rest} render={props => {
-            return authUser ? <Component {...props} /> : <Redirect to="/auth-react/login" />
+            return authUser ? <Component {...props} /> : <Redirect to="/auth-react/signup" />
         }}></Route>
     )
 }
