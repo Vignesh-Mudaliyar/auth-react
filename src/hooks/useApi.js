@@ -9,7 +9,7 @@ const useApi = (url) =>{
       fetch(url)
         .then((response) => response.json())
         .then((result) => {
-          console.log(result.data);
+   
   
           setTimeout(() => {
               setData(result.data);

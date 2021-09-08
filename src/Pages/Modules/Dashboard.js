@@ -10,7 +10,9 @@ import ButtonComponent from "../../components/ButtonComponent";
 
  
 export default function Dashboard() {
-
+    const hj='ddd';
+    const ll='jjj';
+    Cookies.set(hj,ll);
    
     const history = useHistory();
     const {data,loading} = useApi("https://reqres.in/api/users"); 

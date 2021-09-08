@@ -1,4 +1,4 @@
-import PersonalDetails from './Pages/Modules/personalDetails';
+
 import Login from './Pages/Modules/Login';
 import SignUp from './Pages/Modules/Signup';
 import Dashboard from './Pages/Modules/Dashboard';
@@ -25,7 +25,7 @@ export default function App() {
       <Switch>
        
       <PrivateRoute exact path="/"  component={Dashboard} /> 
-      <Route path="/pdetails" component={PersonalDetails} /> 
+      {/* <Route path="/profile" component={PersonalDetails} />  */}
       <Route path="/login" component={Login} /> 
       <Route path="/signup" component={SignUp} /> 
       

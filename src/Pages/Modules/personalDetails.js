@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import {  Form } from 'react-bootstrap';
-import {Link, useHistory} from 'react-router-dom';
+import {  Form,Modal, ListGroup} from 'react-bootstrap';
+// import { useHistory} from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import InputComponent from '../../components/Input';
 import ButtonComponent from '../../components/ButtonComponent';
-import CenteredContainer from '../../components/centeredContainer';
+// import CenteredContainer from '../../components/centeredContainer';
+// import Cookies from 'js-cookie';
 
-import Cookies from 'js-cookie'
 
-Cookies.set('foo', 'bar')
 
-export default function PersonalDetails() {
-    const history = useHistory();
+export default function PersonalDetails({label,show,setShow,showProfile,setShowProfile,setShowBtn}) {
+    
     const [fName, setFname] = useState('');
     const [lName, setLname] = useState('');
     const [pNumber, setPNumber] = useState('');
@@ -22,6 +21,7 @@ export default function PersonalDetails() {
     const [data, setData] = useState([]);
     const [fileText,setFileText] = useState('');
     const [img,setImg] =useState('');
+  
 
     const handleFName = (e) => {
         setFname(e.target.value);
@@ -90,10 +90,11 @@ export default function PersonalDetails() {
     const handleImgFile = (e) => {
       
       const value= e.target.value;
+      console.log(e)
       setImg(e.target.value)
         let extnsion = value.slice(value.indexOf('.') + 1,value.length);
 
-        console.log(typeof(extnsion),typeof('png'))
+      
 
       if(extnsion === 'png' || extnsion === 'jpg' || extnsion === 'jpeg')
       {
@@ -111,7 +112,8 @@ export default function PersonalDetails() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setData([...data, { firstName: fName, lastName: lName, phoneNumber: pNumber, date: date, Age: age }]);
+        setData([{ firstName: fName, lastName: lName, phoneNumber: pNumber, date: date, Age: age,imgPath: img,show:true }]);
+        
 
         setFname('');
         setLname('');
@@ -123,13 +125,14 @@ export default function PersonalDetails() {
         setValidate({ fNameClass: '', lNameClass: '', pNumberClass: '', dobClass: '' });
 
         NotificationManager.success('Data Added successfully ');
-        history.push('/auth-react/signup');
+        setShow(false);
+        setShowBtn(true);
 
     }
+    useEffect(() =>{
+        console.log(data);
+    },[data])
 
-    useEffect(() => {
-       console.log(data);
-    }, [data]);
     useEffect(() => {
        
         if (fName.length >= 5 && lName.length >= 5 && pNumber.match(/^\d{10}$/) && date.length >= 10 && img !== '') {
@@ -141,9 +144,15 @@ export default function PersonalDetails() {
     }, [fName, lName, pNumber, date,img]); 
 
     return (
-      <CenteredContainer>
+        
+ <>
+           <Modal show={show} onHide={() => setShow(false)}>
+               <Modal.Header>
+                    <h1 className="text-center">{label}</h1>
+                    </Modal.Header>
+
                 <Form onSubmit={handleSubmit}>
-                    <h1 className="text-center">Personal Details</h1>
+                    <Modal.Body>
                     
                     <InputComponent
                         label="First Name"
@@ -191,12 +200,30 @@ export default function PersonalDetails() {
                               <Form.Control type="file" accept=".png,.jpg,.jpeg" className="is-invalid border border-secondary rounded"  onChange={handleImgFile} onBlur={handleImgFile}/> <br />
                               <Form.Text className="text-danger">{fileText}</Form.Text>
                     </Form.Group>
-
-                    <ButtonComponent disable={disable} type="submit" label="Submit" />
+        </Modal.Body>
+        <Modal.Footer>
+                    <ButtonComponent disable={disable} type="submit" label="Submit" mt={1} wClass="w-100" />
+             </Modal.Footer>
                 </Form>
-            <div className="mt-3 text-center">Already have an account <Link to="/auth-react/login">Login</Link></div>
-            
+           
+            </Modal>
             <NotificationContainer />
-      </CenteredContainer>
+
+            <Modal  show={showProfile} onHide={() => setShowProfile(false)}>
+                <Modal.Header>
+                   <h2> Profile Details</h2>
+                </Modal.Header>
+                <Modal.Body>
+                    <ListGroup>
+                        <ListGroup.Item><b>First Name: </b>   {data[0]?.firstName} </ListGroup.Item> 
+                        <ListGroup.Item><b>Last Name:  </b>   {data[0]?.lastName} </ListGroup.Item> 
+                        <ListGroup.Item><b>PhoneNumber:</b>   {data[0]?.phoneNumber}</ListGroup.Item> 
+                        <ListGroup.Item><b>Birth date: </b>   {data[0]?.date}</ListGroup.Item> 
+                        <ListGroup.Item><b>Age:-        </b>{data[0]?.Age} </ListGroup.Item> 
+                        </ListGroup>
+                </Modal.Body>
+            </Modal>
+            
+     </>
     )
 }
